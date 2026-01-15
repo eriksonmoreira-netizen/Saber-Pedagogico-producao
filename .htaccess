@@ -1,0 +1,57 @@
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # ----------------------------------------------------------------------
+  # 1. FORÇAR HTTPS (Opcional, mas recomendado na HostGator)
+  # ----------------------------------------------------------------------
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # ----------------------------------------------------------------------
+  # 2. REMOVER EXTENSÃO .html (Clean URLs)
+  # ----------------------------------------------------------------------
+  # Se o usuário acessar /arquivo.html, redireciona 301 para /arquivo (SEO)
+  RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L]
+
+  # Se a requisição não tem extensão e existe um arquivo .html correspondente, serve ele
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+)$ $1.html [L]
+
+  # ----------------------------------------------------------------------
+  # 3. SPA FALLBACK (Redirecionar 404 para index.html)
+  # ----------------------------------------------------------------------
+  # Se o arquivo ou diretório solicitado NÃO existir...
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  # ...redirecione para index.html (O React/Next assume o roteamento aqui)
+  RewriteRule . /index.html [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  # ----------------------------------------------------------------------
+  # 4. CONTROLE DE CACHE (Cache Busting)
+  # ----------------------------------------------------------------------
+  
+  # HTML e JSON: NUNCA fazer cache (Garante que o usuário veja novas versões imediatamente)
+  <FilesMatch "\.(html|htm|json)$">
+    Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+  </FilesMatch>
+
+  # CSS, JS, Imagens: Cache longo (1 ano)
+  # Como o build gera arquivos com hash (ex: main.a1b2c3.js), é seguro cachear.
+  <FilesMatch "\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
+  </FilesMatch>
+</IfModule>
+
+# Segurança Adicional: Bloquear acesso a arquivos sensíveis ou de sistema
+<FilesMatch "^\.">
+  Order allow,deny
+  Deny from all
+</FilesMatch>

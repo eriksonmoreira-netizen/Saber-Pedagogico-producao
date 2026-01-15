@@ -1,11 +1,21 @@
-<div align="center">
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+# Saber Pedagógico - Gestão Educacional Completa
 
-  <h1>Built with AI Studio</h2>
+Plataforma inteligente de gestão escolar com análise preditiva via Gemini AI.
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+## 🚀 Como rodar o projeto
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+1. Clone o repositório
+2. Instale as dependências: `npm install`
+3. Crie um arquivo `.env` com sua `API_KEY` do Gemini.
+4. Rode o projeto: `npm run dev`
 
-</div>
+## 🛠️ Tecnologias
+- React 19
+- Vite
+- Tailwind CSS
+- Gemini AI API
+- Recharts
+
+## 📦 Deploy
+Conectado automaticamente com **Vercel**.
