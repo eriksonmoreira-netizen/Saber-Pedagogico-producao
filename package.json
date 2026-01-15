@@ -1,37 +1,25 @@
 {
   "name": "saber-pedagogico",
   "version": "1.2.0",
-  "private": true,
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "next build",
     "start": "node .next/standalone/server.js",
-    "lint": "next lint",
     "postinstall": "prisma generate"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
-    "@prisma/client": "^5.21.1",
-    "lucide-react": "^0.462.0",
-    "next": "^14.2.15",
+    "@prisma/client": "5.22.0",
+    "next": "14.2.15",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "recharts": "^2.13.0",
-    "mercadopago": "^2.0.15",
-    "cors": "^2.8.5",
-    "express": "^4.21.1"
+    "lucide-react": "^0.462.0",
+    "recharts": "^2.13.0"
   },
   "devDependencies": {
-    "@types/node": "^20.12.7",
-    "@types/react": "^18.3.1",
-    "@types/react-dom": "^18.3.0",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.14",
-    "prisma": "^5.21.1",
+    "prisma": "5.22.0",
     "typescript": "^5.6.3",
-    "eslint": "^8.57.0",
-    "eslint-config-next": "14.2.15"
+    "tailwindcss": "^3.4.14"
   }
 }
