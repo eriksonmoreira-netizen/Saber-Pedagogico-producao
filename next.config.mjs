@@ -1,14 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Gera uma pasta 'standalone' otimizada para VPS e hospedagens Node.js (como Hostinger)
+  // 'standalone' cria uma pasta .next/standalone contendo apenas o necessário para produção.
+  // Isso resolve problemas de memória e caminhos na Hostinger.
   output: 'standalone',
   
-  // Desativa a otimização de imagem padrão que requer bibliotecas nativas adicionais
+  // Hostinger não possui as libs nativas para otimização de imagem do Next.js.
+  // Isso evita erros 500 ao carregar imagens.
   images: {
     unoptimized: true,
   },
   
-  // Headers de segurança básicos
+  // Garante que headers de segurança básicos sejam aplicados
   async headers() {
     return [
       {
