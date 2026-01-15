@@ -1,8 +1,0 @@
-{
-  "name": "Saber Pedagógico.VERS-5.0",
-  "description": "Plataforma inteligente de gestão escolar com análise preditiva via Gemini AI.",
-  "requestFramePermissions": [
-    "camera",
-    "microphone"
-  ]
-}
